@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cerrajería Totti | Puertas y Ventanas Metálicas • Soldadura Profesional</title>
+
+  <!-- Meta SEO -->
+  <meta name="description" content="Diseño a medida, instalación segura y acabados de primera en estructuras metálicas, portones y soldadura profesional (TIG, MIG, Eléctrica) en Shushufindi, Ecuador.">
+  <meta name="keywords" content="cerrajería, soldadura, estructuras metálicas, puertas de seguridad, portones, ventanas, TIG, MIG, Shushufindi, Tito Carvajal">
+  <meta name="author" content="Tito Carvajal - Cerrajería Totti">
+
+  <!-- Fuentes / utilidades -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ===== Colores corporativos ===== */
+    :root{
+      --color-blue:#123B6B;
+      --color-orange:#FF8A27;
+      --color-dark-bg:#131313;
+    }
+
+    /* ===== Base y ajustes de scroll (sin forzar capas) ===== */
+    html{
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch; /* inercia iOS */
+    }
+    body{
+      font-family:'Inter',sans-serif;
+      background-color:var(--color-dark-bg);
+      color:#fff;
+      line-height:1.6;
+      min-height:100vh;
+      margin:0;
+      padding:0;
+      overflow-x:hidden;
+    }
+
+    /* Optimización por secciones largas (reduce trabajo al desplazarse) */
+    section{ content-visibility:auto; contain-intrinsic-size:1px 1000px; }
+
+    /* Utilidades de color */
+    .bg-primary-blue{ background-color:var(--color-blue); }
+    .text-primary-blue{ color:var(--color-blue); }
+    .bg-secondary-orange{ background-color:var(--color-orange); }
+    .text-secondary-orange{ color:var(--color-orange); }
+    .border-secondary-orange{ border-color:var(--color-orange); }
+
+    /* Glassmorphism (suavizado en móviles) */
+    .glass-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 6px 24px rgba(0,0,0,0.25);
+    }
+    @supports (backdrop-filter:blur(5px)){
+      .glass-card{ backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); }
+    }
+
+    /* Fondo animado, pero controlado */
+    .hot-metal-bg{
+      position:relative;
+      background:linear-gradient(135deg,var(--color-dark-bg) 0%,#0a0a0a 100%);
+    }
+    .hot-metal-bg::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,138,39,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 80% 90%, rgba(255,138,39,0.05) 0%, transparent 50%);
+      animation:pulse-glow 18s infinite ease-in-out;
+      pointer-events:none; z-index:-1;
+    }
+    @keyframes pulse-glow{
+      0%{ opacity:.5; transform:scale(1); }
+      50%{ opacity:.8; transform:scale(1.05); }
+      100%{ opacity:.5; transform:scale(1); }
+    }
+    /* Pausa la animación durante el gesto de scroll y para usuarios con reduced motion */
+    .is-scrolling .hot-metal-bg::before{ animation:none !important; }
+    @media (max-width:768px){ .hot-metal-bg::before{ animation:none !important; } }
+    @media (prefers-reduced-motion:reduce){ .hot-metal-bg::before{ animation:none !important; } }
+
+    /* Hover botón naranja */
+    .btn-hover-orange:hover{
+      background-color:#ffaa60;
+      transform:translateY(-2px);
+      box-shadow:0 4px 15px rgba(255,138,39,0.4);
+    }
+
+    /* Iconos servicio */
+    .service-icon{ transition:color .3s ease, transform .3s ease; }
+    .service-card:hover .service-icon{ color:var(--color-orange); transform:scale(1.1); }
+
+    /* Header fijo (ligero en móvil: sin blur activo) */
+    @media (max-width:768px){
+      header.glass-card{
+        backdrop-filter:none !important;
+        -webkit-backdrop-filter:none !important;
+        background:rgba(18,59,107,0.92);
+        box-shadow:0 4px 16px rgba(0,0,0,0.2);
+      }
+    }
+
+    /* Logo */
+    .logo-link img{ height:8rem; transition:transform .3s; }
+    @media (max-width:768px){ .logo-link img{ height:4rem; } }
+
+    /* Menú móvil padding agradable */
+    @media (max-width:768px){
+      #mobile-menu a{ padding-left:1.5rem; padding-right:1.5rem; }
+    }
+
+    /* Modal galería */
+    #gallery-modal{
+      z-index:100; background-color:rgba(0,0,0,0.7);
+      transition:opacity .3s ease; display:none;
+    }
+    #modal-content-wrapper{ transform-style:preserve-3d; perspective:1000px; }
+    #modal-image{
+      max-height:90vh; max-width:90vw;
+      box-shadow:0 25px 50px -12px rgba(255,138,39,0.5);
+      transform:rotateY(0deg); transition:transform .5s ease;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar{ width:8px; }
+    ::-webkit-scrollbar-thumb{ background:var(--color-orange); border-radius:4px; }
+    ::-webkit-scrollbar-track{ background:var(--color-dark-bg); }
+
+    /* Galería: evita layout shift al reservar proporción */
+    .gallery-item{ aspect-ratio:4/3; object-fit:cover; }
+  </style>
+</head>
+<body class="hot-metal-bg">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-primary-blue bg-opacity-95 glass-card shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20 md:h-28">
+      <a href="#" class="logo-link flex items-center">
+        <img src="https://i.postimg.cc/yx2KSfQ2/logo.png" alt="Logo Cerrajería Totti" class="w-auto transition duration-300 transform hover:scale-105">
+        <span class="sr-only">Cerrajería Totti</span>
+      </a>
+
+      <!-- Navegación escritorio -->
+      <nav class="hidden md:flex space-x-8 items-center font-medium">
+        <a href="#servicios" class="text-white hover:text-secondary-orange transition duration-300">Servicios</a>
+        <a href="#galeria" class="text-white hover:text-secondary-orange transition duration-300">Trabajos</a>
+        <a href="#cotizar" class="text-white hover:text-secondary-orange transition duration-300">Cotizar</a>
+        <a href="#faq" class="text-white hover:text-secondary-orange transition duration-300">Preguntas</a>
+        <a href="#contacto" class="text-white hover:text-secondary-orange transition duration-300">Contacto</a>
+        <a id="nav-whatsapp-btn" href="#" target="_blank" class="bg-secondary-orange text-white px-4 py-2 rounded-full font-bold transition duration-300 btn-hover-orange flex items-center">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </nav>
+
+      <!-- Menú móvil -->
+      <button id="menu-toggle" class="md:hidden text-white text-2xl hover:text-secondary-orange transition duration-300">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Desplegable móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-primary-blue bg-opacity-90 py-4 shadow-xl">
+      <nav class="flex flex-col space-y-3 px-6 pb-2 font-medium">
+        <a href="#servicios" class="text-white hover:text-secondary-orange transition duration-300 py-2" onclick="closeMobileMenu()">Servicios</a>
+        <a href="#galeria" class="text-white hover:text-secondary-orange transition duration-300 py-2" onclick="closeMobileMenu()">Trabajos</a>
+        <a href="#cotizar" class="text-white hover:text-secondary-orange transition duration-300 py-2" onclick="closeMobileMenu()">Cotizar</a>
+        <a href="#faq" class="text-white hover:text-secondary-orange transition duration-300 py-2" onclick="closeMobileMenu()">Preguntas</a>
+        <a href="#contacto" class="text-white hover:text-secondary-orange transition duration-300 py-2" onclick="closeMobileMenu()">Contacto</a>
+        <a id="mobile-whatsapp-btn" href="#" target="_blank" class="bg-secondary-orange text-white px-4 py-2 rounded-full font-bold mt-4 transition duration-300 btn-hover-orange flex items-center justify-center">
+          <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="relative hot-metal-bg pt-20 pb-20 md:pt-40 md:pb-32 bg-cover bg-center"
+      style="background-image:url('https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg'); background-blend-mode:overlay; background-color:rgba(0,0,0,0.75);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white mb-4 drop-shadow-lg">
+          Puertas y Ventanas Metálicas • <span class="text-secondary-orange">Soldadura Profesional</span>
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-medium">
+          Diseño a medida, instalación segura y acabados de primera.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <a href="#cotizar" class="bg-secondary-orange text-white px-8 py-3 rounded-full text-lg font-bold transition duration-300 btn-hover-orange shadow-2xl">
+            Cotizar ahora <i class="fas fa-hammer ml-2"></i>
+          </a>
+          <a href="#galeria" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold transition duration-300 hover:bg-white hover:text-primary-blue hover:border-transparent shadow-2xl">
+            Ver trabajos <i class="fas fa-eye ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-16 md:py-24 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4">Nuestros <span class="text-secondary-orange">Servicios</span> Expertos</h2>
+        <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Experiencia en metalurgia y cerrajería estructural para proyectos residenciales, comerciales e industriales.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-door-closed text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Puertas y Portones</h3>
+            <p class="text-gray-300">Diseño y fabricación de portones corredizos, seccionales y puertas de seguridad a prueba de intrusión.</p>
+          </div>
+
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-window-restore text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Ventanas y Rejas</h3>
+            <p class="text-gray-300">Ventanas modernas, rejas de protección elegantes y sistemas anti-intrusión.</p>
+          </div>
+
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-warehouse text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Techos y Estructuras</h3>
+            <p class="text-gray-300">Construcción de galpones, cubiertas, estructuras para losas metálicas y cerramientos estructurales.</p>
+          </div>
+
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-stairs text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Escaleras y Barandas</h3>
+            <p class="text-gray-300">Fabricación de escaleras interiores y exteriores, barandas seguras y estéticas.</p>
+          </div>
+
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-truck-moving text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Carrocerías y Corrales</h3>
+            <p class="text-gray-300">Trabajos especializados en carrocerías para vehículos y construcción de corrales de metal.</p>
+          </div>
+
+          <div class="p-6 rounded-xl glass-card text-center service-card hover:bg-gray-800 transition duration-300">
+            <i class="fas fa-fire-extinguisher text-5xl text-white service-icon mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-secondary-orange">Mantenimiento y Soldadura</h3>
+            <p class="text-gray-300">Reparación y mantenimiento, con técnicas de soldadura TIG, MIG, Eléctrica y oxicorte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-16 md:py-24 bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4">Galería de <span class="text-secondary-orange">Trabajos</span></h2>
+        <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">La calidad de nuestro trabajo es nuestra mejor carta de presentación. Revise nuestros proyectos recientes.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- 1 -->
+          <img src="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 1"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+          <!-- 2 -->
+          <img src="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 2"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+          <!-- 3 -->
+          <img src="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 3"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+          <!-- 4 -->
+          <img src="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 4"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+          <!-- 5 -->
+          <img src="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 5"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/XJzSTHbd/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+          <!-- 6 -->
+          <img src="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg"
+               alt="Trabajo metálico 6"
+               class="gallery-item w-full h-auto object-cover rounded-lg cursor-pointer transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary-orange/50"
+               loading="lazy"
+               data-img-url="https://i.postimg.cc/0MDBSCry/f1678990_62e6_459b_acf1_86d75a2b7163.jpg">
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Galería -->
+    <div id="gallery-modal" class="fixed inset-0 flex items-center justify-center p-4" onclick="closeModal()">
+      <div id="modal-content-wrapper" class="relative">
+        <img id="modal-image" src="" alt="Trabajo en detalle" class="rounded-xl" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-white text-3xl hover:text-secondary-orange transition duration-300" onclick="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <section id="video" class="py-16 md:py-24 hot-metal-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-white">Vea Nuestro <span class="text-secondary-orange">Trabajo</span> en Acción</h2>
+        <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Un breve vistazo al proceso de fabricación y la calidad de nuestra soldadura.</p>
+
+        <div class="relative w-full max-w-4xl mx-auto aspect-video rounded-xl shadow-2xl shadow-secondary-orange/50 overflow-hidden">
+          <iframe class="w-full h-full"
+            src="https://www.youtube.com/embed/5H-7N_1J320?si=WpY-Hw-c-5g_9-uQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 md:py-24 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4">Preguntas <span class="text-secondary-orange">Frecuentes</span></h2>
+        <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Resolvemos las dudas más comunes antes de iniciar tu proyecto.</p>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          <div class="glass-card rounded-lg overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 font-bold text-left text-lg hover:bg-white/10 transition duration-300">
+              <span>¿Qué tipos de soldadura manejan?</span>
+              <i class="fas fa-chevron-down transform transition duration-300"></i>
+            </button>
+            <div class="faq-content hidden p-5 pt-0 text-gray-300 border-t border-gray-700">
+              <p>Somos expertos en soldadura eléctrica (SMAW), TIG (GTAW) para acabados de alta calidad, MIG (GMAW) para producción eficiente, y oxicorte para preparación de materiales.</p>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-lg overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 font-bold text-left text-lg hover:bg-white/10 transition duration-300">
+              <span>¿Ofrecen diseño personalizado para puertas y portones?</span>
+              <i class="fas fa-chevron-down transform transition duration-300"></i>
+            </button>
+            <div class="faq-content hidden p-5 pt-0 text-gray-300 border-t border-gray-700">
+              <p>¡Absolutamente! Trabajamos bajo diseño a medida. Solo necesitamos tus ideas o referencias para crear un proyecto único y funcional que se adapte a tu espacio.</p>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-lg overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-5 font-bold text-left text-lg hover:bg-white/10 transition duration-300">
+              <span>¿Dónde están ubicados y cuál es su área de servicio?</span>
+              <i class="fas fa-chevron-down transform transition duration-300"></i>
+            </button>
+            <div class="faq-content hidden p-5 pt-0 text-gray-300 border-t border-gray-700">
+              <p>Estamos en el Barrio Integración Social, calles Atahualpa entre Brasil y Venezuela, Shushufindi, Ecuador. Atendemos proyectos en toda la zona y alrededores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-16 md:py-24 bg-primary-blue hot-metal-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4 text-white">Hablemos de tu <span class="text-secondary-orange">Proyecto</span></h2>
+        <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">Contáctanos directamente para empezar a construir tu visión con metal.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+          <div class="p-6 rounded-xl bg-primary-blue/70 glass-card">
+            <i class="fas fa-map-marker-alt text-4xl text-secondary-orange mb-3"></i>
+            <h3 class="text-xl font-bold mb-2 text-white">Dirección</h3>
+            <p class="text-gray-300">Barrio Integración Social, Atahualpa entre Brasil y Venezuela, Shushufindi, Ecuador.</p>
+          </div>
+
+          <div class="p-6 rounded-xl bg-primary-blue/70 glass-card">
+            <i class="fas fa-phone text-4xl text-secondary-orange mb-3"></i>
+            <h3 class="text-xl font-bold mb-2 text-white">WhatsApp / Llamadas</h3>
+            <a id="contact-whatsapp-link" href="#" class="text-gray-300 hover:text-secondary-orange transition block">+593 96 988 1264</a>
+            <a href="tel:+593969881264" class="text-gray-300 hover:text-secondary-orange transition block">Llamar Ahora</a>
+          </div>
+
+          <div class="p-6 rounded-xl bg-primary-blue/70 glass-card">
+            <i class="fas fa-envelope text-4xl text-secondary-orange mb-3"></i>
+            <h3 class="text-xl font-bold mb-2 text-white">Correo</h3>
+            <a href="mailto:titocarvajal1000@gmail.com" class="text-gray-300 hover:text-secondary-orange transition block">titocarvajal1000@gmail.com</a>
+            <div class="mt-3 space-x-4">
+              <a href="#" class="text-2xl text-white hover:text-secondary-orange transition"><i class="fab fa-facebook-square"></i></a>
+              <a href="#" class="text-2xl text-white hover:text-secondary-orange transition"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 py-8 border-t-4 border-secondary-orange/50 shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+      <p class="mb-2">&copy; 2024 Cerrajería Totti. Todos los derechos reservados. | Propietario: Tito Carvajal.</p>
+      <p class="text-xs">Especialistas en soldadura eléctrica, TIG, MIG, oxicorte, y estructuras metálicas.</p>
+    </div>
+  </footer>
+
+  <!-- Botón Flotante WhatsApp -->
+  <a id="float-whatsapp-btn" href="#" target="_blank" class="fixed bottom-6 right-6 z-50 bg-secondary-orange text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-xl transition duration-300 hover:bg-[#ffaa60] hover:scale-110">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- JS -->
+  <script>
+    /* === WhatsApp: mensaje corto y enlaces === */
+    const WELCOME_MESSAGE = `Hola, me interesa una cotización.
+Servicio: ________
+Ubicación: ________
+¿Tiempo de entrega y formas de pago?
+Gracias.`;
+    const WHATSAPP_NUMBER = '593969881264';
+    const WELCOME_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WELCOME_MESSAGE)}`;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const byId = id => document.getElementById(id);
+      const ids = ['nav-whatsapp-btn','mobile-whatsapp-btn','float-whatsapp-btn','contact-whatsapp-link'];
+      ids.forEach(id => { const el = byId(id); if (el) el.href = WELCOME_URL; });
+    });
+
+    /* === Menú móvil === */
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    function toggleMobileMenu(){
+      mobileMenu.classList.toggle('hidden');
+      const icon = menuToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    }
+    function closeMobileMenu(){
+      if(!mobileMenu.classList.contains('hidden')) toggleMobileMenu();
+    }
+    menuToggle.addEventListener('click', toggleMobileMenu, { passive:true });
+
+    /* === Formulario → WhatsApp (mensaje detallado) === */
+    const quoteForm = document.getElementById('quote-form');
+    if (quoteForm){
+      quoteForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const nombre   = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const servicio = document.getElementById('servicio').value;
+        const medidas  = document.getElementById('medidas').value;
+        const material = document.getElementById('material').value;
+        const ubicacion= document.getElementById('ubicacion').value;
+        const descripcion = document.getElementById('descripcion').value;
+
+        const quoteMessage = `*COTIZACIÓN RÁPIDA - Cerrajería Totti*
+
+*Datos del Solicitante:*
+Nombre: ${nombre}
+Teléfono: ${telefono}
+Ubicación: ${ubicacion}
+
+*Detalles del Proyecto:*
+Servicio: ${servicio}
+Medidas Aprox.: ${medidas || 'No especificadas'}
+Material Deseado: ${material || 'No especificado'}
+Descripción: ${descripcion}
+
+Por favor, envíame la cotización. ¡Gracias!`;
+
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(quoteMessage)}`;
+        window.open(waUrl, '_blank');
+      }, { passive:true });
+    }
+
+    /* === Modal Galería === */
+    const modal = document.getElementById('gallery-modal');
+    const modalImage = document.getElementById('modal-image');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modalWrapper = document.getElementById('modal-content-wrapper');
+
+    function openModal(imgUrl){
+      modalImage.src = imgUrl;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      setTimeout(()=>{
+        modalWrapper.style.transform = 'rotateY(10deg)';
+        modalImage.style.transform = 'rotateY(-10deg)';
+      },50);
+    }
+    function closeModal(){
+      modalWrapper.style.transform = 'rotateY(0deg)';
+      modalImage.style.transform = 'rotateY(0deg)';
+      setTimeout(()=>{
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      },500);
+    }
+    galleryItems.forEach(item=>{
+      item.addEventListener('click', ()=> openModal(item.getAttribute('data-img-url')), { passive:true });
+    });
+    document.addEventListener('keydown', function(event){
+      if(event.key==='Escape' && modal.style.display==='flex'){ closeModal(); }
+    });
+
+    /* === Pausa de animaciones mientras se desplaza (evita repaints costosos) === */
+    let scrollTimer;
+    window.addEventListener('scroll', ()=>{
+      document.documentElement.classList.add('is-scrolling');
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(()=>{ document.documentElement.classList.remove('is-scrolling'); }, 120);
+    }, { passive:true });
+  </script>
+</body>
+</html>
